@@ -6,10 +6,7 @@ import java.util.Random;
 
 @Service
 public class TaskService {
-
     private int taskCount = 0;
-    private final Random random = new Random();
-
     private final List<String> taskList = List.of(
             "Выпей воды 💧",
             "Сделай глубокий вдох 😮‍💨",
@@ -21,7 +18,7 @@ public class TaskService {
 
     public String getRandomTask() {
         taskCount++;
-        int index = random.nextInt(taskList.size());
+        int index = (int) (Math.random() * taskList.size());
         return taskList.get(index);
     }
 
