@@ -14,25 +14,25 @@ TODO
     4) Кладёт его в свою "копилку" (контейнер Spring)
  */
 @RestController
-public class AdviceController {
+public class TaskController {
 
-    private final AdviceService adviceService;
+    private final TaskService taskService;
 
     /*
     TODO
     Конструктор используется при создании Spring(ом) объекта AdviceController
      */
-    public AdviceController(AdviceService adviceService) {
-        this.adviceService = adviceService;
+    public TaskController(TaskService taskService) {
+        this.taskService = taskService;
     }
 
-    @GetMapping("/advice")
-    public String getRandomAdvice() {
-        return adviceService.getRandomAdvice();
+    @GetMapping("/task")
+    public String getRandomTask() {
+        return taskService.getRandomTask();
     }
 
     @GetMapping("/count")
-    public int getAdviceCount() {
-        return adviceService.getAdviceCount();
+    public int getTaskCount() {
+        return taskService.getTaskCount();
     }
 }
