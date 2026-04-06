@@ -5,12 +5,12 @@ import java.util.List;
 import java.util.Random;
 
 @Service
-public class AdviceService {
+public class TaskService {
 
-    private int adviceCount = 0;
+    private int taskCount = 0;
     private final Random random = new Random();
 
-    private final List<String> adviceList = List.of(
+    private final List<String> taskList = List.of(
             "Выпей воды 💧",
             "Сделай глубокий вдох 😮‍💨",
             "Встань и разомнись 🚶",
@@ -19,13 +19,13 @@ public class AdviceService {
             "Похвали себя за что-то 👍"
     );
 
-    public String getRandomAdvice() {
-        adviceCount++;
-        int index = random.nextInt(adviceList.size());
-        return adviceList.get(index);
+    public String getRandomTask() {
+        taskCount++;
+        int index = random.nextInt(taskList.size());
+        return taskList.get(index);
     }
 
-    public int getAdviceCount() {
-        return adviceCount;
+    public int getTaskCount() {
+        return taskCount;
     }
 }
