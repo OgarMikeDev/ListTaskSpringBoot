@@ -1,6 +1,8 @@
 package org.example.controllers;
+import org.example.services.TaskService;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.example.services.AdviceService;
 
 /*
 TODO
@@ -20,7 +22,7 @@ public class TaskController {
 
     /*
     TODO
-    Конструктор используется при создании Spring(ом) объекта AdviceController
+     Конструктор используется при создании Spring(ом) объекта AdviceController
      */
     public TaskController(TaskService taskService) {
         this.taskService = taskService;
@@ -34,5 +36,16 @@ public class TaskController {
     @GetMapping("/count")
     public int getTaskCount() {
         return taskService.getTaskCount();
+    }
+
+    @PostMapping("/add_task")
+    public ResponseEntity.BodyBuilder addTask(@RequestBody String task) {
+        try {
+            System.out.println("Task: " + task);
+            taskService.addTask(task);
+            return ResponseEntity.status(HttpStatus.OK);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST);
+        }
     }
 }

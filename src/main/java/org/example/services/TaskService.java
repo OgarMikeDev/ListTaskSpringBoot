@@ -2,7 +2,6 @@ package org.example.services;
 
 import org.springframework.stereotype.Service;
 import java.util.List;
-import java.util.Random;
 
 @Service
 public class TaskService {
@@ -24,5 +23,9 @@ public class TaskService {
 
     public int getTaskCount() {
         return taskCount;
+    }
+
+    public void addTask(String task) {
+        taskList.add(task);
     }
 }
