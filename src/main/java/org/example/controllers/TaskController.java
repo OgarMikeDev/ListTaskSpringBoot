@@ -4,6 +4,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Map;
+
 /*
 TODO
  @RestController означает, что класс будет отвечать на HTTP-запросы,
@@ -39,10 +41,16 @@ public class TaskController {
     }
 
     @PostMapping("/add_task")
-    public ResponseEntity.BodyBuilder addTask(@RequestBody String task) {
+    public ResponseEntity.BodyBuilder addTask(@RequestBody Map<String, String> task) {
         try {
-            System.out.println("Task: " + task);
-            taskService.addTask(task);
+            Map<String, String> mapCurrentTask = task;
+            String getTask = "";
+            for (Map.Entry<String, String> entry : mapCurrentTask.entrySet()) {
+                System.out.println(entry.getKey() + " - " + entry.getValue());
+                getTask = entry.getValue();
+            }
+
+            taskService.addTask(getTask);
             return ResponseEntity.status(HttpStatus.OK);
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST);
